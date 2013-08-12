@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="HomeSite.Dal" namespace="HomeSite.Dal.Domain">
+  <class name="User" table="`User`">
+    <id name="UserID">
+      <generator class="identity"></generator>
+    </id>
+    <property name="Email"/>
+    <property name="Password"/>
+    <property name="Identifier"/>
+    <property name="Firstname"/>
+    <property name="Lastname"/>
+    <set name="Forums" inverse="true" lazy="true" >
+      <key column="Id"/>
+      <one-to-many class="Forum"/>
+    </set>
+  </class>
+</hibernate-mapping>

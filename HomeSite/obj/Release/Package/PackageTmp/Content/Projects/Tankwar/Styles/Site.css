@@ -1,0 +1,94 @@
+﻿
+h1
+{
+    font-family: 'GentiumBasicRegular';
+    font-size: 2em;
+    color: #544C4A;
+    text-align: center;
+    text-shadow: 1px 2px 9px #1a171a;
+    filter: dropshadow(color=#1a171a, offx=1, offy=2);
+    -webkit-user-select: none;
+}
+
+body
+{
+    background: #d4e4ef; /* Old browsers */
+    
+    height: 100%;
+    text-align: center;
+    
+}
+
+.canvas
+{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: White;
+    border-style: solid;
+    border-color: #666666;
+    border-width: 2px;
+    margin-bottom: 10px;
+    width: 1024px;
+    height: 640px;
+    resize: none;
+    overflow: auto;
+    min-width: 300px; /*suggest a mid-width & min-height*/
+    min-height: 300px;
+}
+
+#backgroundPopup{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    background:#000000;
+    border:1px solid #cecece;
+    z-index:1;
+}
+#popupContact{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    /*height:150px;*/
+    width:300px;
+    background:#666666;
+    border:2px solid #cecece;
+    z-index:2;
+    padding:12px;
+    font-size:13px;
+}
+
+#popupContact h2{
+    text-align:left;
+    margin:0px;
+    color:#6FA5FD;
+    font-size:22px;
+    font-weight:700;
+    border-bottom:1px solid #D3D3D3;
+    padding-bottom:2px;
+    margin-bottom:20px;
+}
+
+#popupContact span{
+    text-align:left;
+    margin:0px;
+    color:#6FA5FD;
+    font-size:18px;
+    font-weight:500;
+}
+#popupContactClose{
+    font-size:14px;
+    line-height:14px;
+    right:6px;
+    top:4px;
+    position:absolute;
+    color:#6fa5fd;
+    font-weight:700;
+    display:block;
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="Stylesheet" href="Styles/Site.css" type="text/css" />
+    <script type="text/javascript" src="Scripts/Main.js"></script>
+    <script type="text/javascript" src="Scripts/Tank.js"></script>
+    <script type="text/javascript" src="Scripts/Position.js"></script>
+    <script type="text/javascript" src="Scripts/Utilities.js"></script>
+    <script type="text/javascript" src="Scripts/clouds.js"></script>
+    <script type="text/javascript" src="Scripts/Menu.js"></script>
+    <script type="text/javascript" src="Scripts/physics.js"></script>
+    <script type="text/javascript" src="Scripts/Inheritance.js"></script>
+    <script type="text/javascript" src="Scripts/Level.js"></script>
+    <script type="text/javascript" src="Scripts/Particles.js"></script>
+    <script type="text/javascript" src="Scripts/Bullet.js"></script>
+    <script type="text/javascript" src="Scripts/popup.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <title>Tankwar</title>
+</head>
+<body onload="GamePlay.Init()">
+<h1>
+    War of tanks
+</h1>
+<div id="container" style="text-align: center;">
+    <canvas id="canvasMain" class="canvas" width="1024px" height="640px" oncontextmenu="return false;">
+        <div>
+            If you read this text, your browser does not support canvas!
+        </div>
+    </canvas>
+</div>
+<input type="BUTTON" id="btDebugStart" onclick="btDebugStart_Click()" value="Debugstart">
+<div id="collision" style="width:25px;height: 25px;background-color:red;display: none;"></div>
+<div id="popupContainer">
+    <div id="popupContact" style="position: absolute; top: 162.5px; left: 436px; display: none;">
+        <a id="popupContactClose" onclick="disablePopup()">x</a>
+        <h2>
+            Game preferences</h2>
+        <p>
+            <span>Number of players:</span>
+            <input type="number" id="tbNumber" min="2" style="width: 50px;"  onchange="tbNumber_Changed()">
+        </p>
+        <div id="containerDiv">
+
+        </div>
+        <p>
+            <input type="BUTTON" id="btStartGame" onclick="btStart_Click()" value="Start game" style="display: none;">
+        </p>
+    </div>
+    <div id="template" style="display: none;">
+        <p>
+            <span id="playerName">Player name:</span>
+            <input type="text" id="tbName" style="width: 100px;">
+        </p>
+        <p>
+            <span id="playerColor">Player color:</span>
+            <input type="color" id="tbColor" style="width: 100px;">
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="Stylesheet" href="Styles/Site.css" type="text/css" />
+    <script type="text/javascript" src="Scripts/Asteroids.js"></script>
+    <script type="text/javascript" src="Scripts/SpaceShip.js"></script>
+    <script type="text/javascript" src="Scripts/physics.js"></script>
+    <script type="text/javascript" src="Scripts/knockout-2.1.0rc2.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="Scripts/popup.js"></script>
+    <title>Asteroids</title>
+    <script type="text/javascript">
+        function Init() {
+            menuCanvas = document.getElementById('menuCanvas');
+            canvas = document.getElementById('canvas');
+        }
+        //
+        //Custom bindinghandlers that can be bound x and y coordinate and opacity property
+        //
+        ko.bindingHandlers.x = {
+            init: function (element, valueAccessor) {
+                var value = valueAccessor();
+                element.setAttribute('x', value());
+            },
+            update: function (element, valueAccessor) {
+                var value = valueAccessor();
+                element.setAttribute('x', value());
+            }
+        };
+
+        ko.bindingHandlers.y = {
+            init: function (element, valueAccessor) {
+                var value = valueAccessor();
+                element.setAttribute('y', value());
+            },
+            update: function (element, valueAccessor) {
+                var value = valueAccessor();
+                element.setAttribute('y', value());
+            }
+        };
+
+        ko.bindingHandlers.opacity = {
+            init: function (element, valueAccessor) {
+                var value = valueAccessor();
+                element.setAttribute('opacity', value());
+            },
+            update: function (element, valueAccessor) {
+                var value = valueAccessor();
+                if (value() < 0)
+                    value(0);
+                element.setAttribute('opacity', value());
+            }
+        };
+
+        //
+        //Initialize game
+        //
+        function Start(level) {
+            menuCanvas.setAttribute("display", "none");
+            canvas.setAttribute("display", "");
+            canvas.setAttribute("style", "background-image: url(Images/background" + level + ".jpg)");
+            DataModel = new Model(level);
+            ko.applyBindings(DataModel);
+            canvas.addEventListener("mousemove", canvas_MouseMove, false);
+            canvas.addEventListener("mousedown", canvas_MouseDown, false);
+            document.addEventListener("keydown", body_Keydown, false);
+            document.addEventListener("keyup", body_Keyup, false);
+        }
+        //
+        //Stop the game and back to menu
+        //
+        function Stop() {
+            DataModel.Dispose();
+            canvas.setAttribute("display", "none");
+            menuCanvas.setAttribute("display", "");
+            canvas.removeEventListener("mousemove", canvas_MouseMove, false);
+            canvas.removeEventListener("mousedown", canvas_MouseDown, false);
+            document.removeEventListener("keydown", body_Keydown, false);
+            document.removeEventListener("keyup", body_Keyup, false);
+            //Show popup window
+            centerPopup();
+            loadPopup();
+        }
+
+        //
+        //Movement events
+        //
+        var keybuffer = [0, 0];
+        function body_Keydown(e) {
+            if (!e) {
+                e = window.event;
+            }
+
+            if (e.keyCode == 39 || e.keyCode == 37)
+                keybuffer[0] = e.keyCode;
+            if (e.keyCode == 38 || e.keyCode == 40)
+                keybuffer[1] = e.keyCode;
+
+            DataModel.Ship.MoveShip();
+
+            if (e.keyCode == 32)
+                DataModel.CreateBullet();
+        }
+
+        function body_Keyup(e) {
+            if (!e) {
+                e = window.event;
+            }
+
+            if (e.keyCode == 39 || e.keyCode == 37)
+                keybuffer[0] = -1;
+            if (e.keyCode == 38 || e.keyCode == 40)
+                keybuffer[1] = -1;
+        }
+
+        function canvas_MouseDown(e) {
+            if (!e) {
+                e = window.event;
+            }
+
+            if (e.keyCode == 0)
+                DataModel.CreateBullet();
+        }
+
+        function canvas_MouseMove(e) {
+            if (!e) {
+                e = window.event;
+            }
+
+            if (e.offsetX) {
+                mouseX = e.offsetX;
+                mouseY = e.offsetY;
+            }
+            else if (e.layerX) {
+                mouseX = e.layerX;
+                mouseY = e.layerY;
+            }
+
+            var x = mouseX;
+            var y = mouseY;
+            DataModel.Ship.MoveToShip(x - DataModel.Ship.Position.Width, y - DataModel.Ship.Position.Height);
+        }
+    </script>
+    <!--Popup window template-->
+    <script type="text/html" id="popup-template">
+    <div id="popupContact" style="position: absolute; top: 162.5px; left: 436px; display: none;">
+        <a id="popupContactClose" onclick="disablePopup()">x</a>
+        <h2>
+            Game over!</h2>
+            <p>
+            <span>You have: </span>
+            <span data-bind="text: Point"></span>
+            <span>points</span>
+            </p>
+    </div>
+    <div id="backgroundPopup" style="height: 709px; display: none; opacity: 0.7;">
+    </div>
+    </script>
+</head>
+<body onload="Init()">
+    <h1>
+        Asteroid war
+    </h1>
+    <div style="text-align: center;">
+        <!--Menu svg-->
+        <svg id="menuCanvas" width="1000" height="600" class="canvas">
+            <g>
+                <text xml:space="preserve" text-anchor="middle" font-family="Cursive" font-size="25"
+                    font-weight="bold" stroke-width="0" stroke="#000000" fill="#544C4A" x="500" y="80">Choose your level</text>
+            </g>
+            <g class="menuItem">
+                <image width="300" height="300" x="30" y="150" id="Image2" style="margin-right: 20px;"
+                    xlink:href="Images/menu1_Easy.png" onclick="Start(0)" cursor="pointer" />
+                <image width="300" height="300" x="350" y="150" id="Image3" xlink:href="Images/menu2_Medium.png"
+                    onclick="Start(1)" cursor="pointer" />
+                <image width="300" height="300" x="670" y="150" id="Image4" xlink:href="Images/menu3_Hard.png"
+                    onclick="Start(2)" cursor="pointer" />
+            </g>
+        </svg>
+        <!--Game svg-->
+        <svg id="canvas" width="1000" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            class="canvas" display="none" style="background-image: url(Images/background2.jpg);
+            background-repeat: no-repeat;">
+            <g id="ship">
+                <image width="100" height="100" id="imgShip" xlink:href="Images/spaceship2.png" data-bind="x: Ship.Position.X,y: Ship.Position.Y" />
+                <image width="100" height="100" id="imgShield" xlink:href="Images/shield.png" data-bind="x: Ship.Position.X,y: Ship.Position.Y,opacity:Ship.Shield" />
+            </g>
+            <g id="bullet">
+                <!-- ko foreach: Bullets -->
+                <image width="5" height="25" id="bulletUse" xlink:href="Images/bullet.png" data-bind="x: $data.Position.X,y: $data.Position.Y" />
+                <!-- /ko -->
+            </g>
+            <g id="asteroids">
+                <!-- ko foreach: LargeAsteroids -->
+                <image width="80" height="59" id="Image1" xlink:href="Images/asteroid_Large.png"
+                    data-bind="x: $data.Position.X,y: $data.Position.Y">
+                </image>
+                <!-- /ko -->
+                <!-- ko foreach: MediumAsteroids -->
+                <image width="80" height="60" id="Image5" xlink:href="Images/asteroid_Medium.png"
+                    data-bind="x: $data.Position.X,y: $data.Position.Y">
+                </image>
+                <!-- /ko -->
+                <!-- ko foreach: SmallAsteroids -->
+                <image width="30" height="20" id="Image6" xlink:href="Images/asteroid_Small.png"
+                    data-bind="x: $data.Position.X,y: $data.Position.Y">
+                </image>
+                <!-- /ko -->
+            </g>
+            <text xml:space="preserve" text-anchor="middle" font-family="Cursive" font-size="19"
+                id="svg_1" y="25" x="35" stroke-width="0" stroke="#000000" fill="#ffffff">Lives:</text>
+            <text xml:space="preserve" text-anchor="middle" font-family="Cursive" font-size="19"
+                id="Text1" y="25" x="70" stroke-width="0" stroke="#000000" fill="#ffffff" data-bind="text: Ship.Lives" />
+            <text xml:space="preserve" text-anchor="middle" font-family="Cursive" font-size="19"
+                id="Text2" y="55" x="40" stroke-width="0" stroke="#000000" fill="#ffffff">Points:</text>
+            <text xml:space="preserve" text-anchor="middle" font-family="Cursive" font-size="19"
+                id="Text3" y="55" x="85" stroke-width="0" stroke="#000000" fill="#ffffff" data-bind="text: Point" />
+        </svg>
+    </div>
+    <div id="popupContainer" data-bind="template: { name: 'popup-template', data: DataModel }">
+    </div>
+</body>
+</html>
