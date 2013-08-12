@@ -1,0 +1,4 @@
+C:\Users\gmeszaros\Documents\GitHub\HomeSite\HomeSiteCloud\bin\Debug\ServiceConfiguration.cscfg
+C:\Users\gmeszaros\Documents\GitHub\HomeSite\HomeSiteCloud\bin\Debug\ServiceDefinition.csdef
+C:\Users\Gábor\Documents\GitHub\HomeSite\HomeSiteCloud\bin\Debug\ServiceConfiguration.cscfg
+C:\Users\Gábor\Documents\GitHub\HomeSite\HomeSiteCloud\bin\Debug\ServiceDefinition.csdef
