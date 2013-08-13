@@ -8,9 +8,9 @@
     <property name="Description"/>
     <property name="Created"/>
     <property name="Identifier"/>
-    <many-to-one name="Moderator" column="moderatorId" cascade="all-delete-orphan"/>
+    <many-to-one name="Moderator" column="moderatorId" />
     <set name="Posts" inverse="true" lazy="true" >
-      <key column="Id"/>
+      <key column="forumId"/>
       <one-to-many class="ForumPost"/>
     </set>
   </class>

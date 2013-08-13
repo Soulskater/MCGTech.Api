@@ -4,7 +4,9 @@
     <id name="ForumPostID">
       <generator class="identity"></generator>
     </id>
-    <property name="PostText"/>
+    <property name="PostText">
+      <column name="PostText" length="2147483647"></column>
+    </property>
     <property name="Created"/>
     <many-to-one name="User" column="userId" cascade="all-delete-orphan"/>
     <many-to-one name="Forum" column="forumId" cascade="all-delete-orphan"/>

@@ -1,0 +1,17 @@
+﻿@model IList<HomeSite.Models.ForumModel>
+
+@{
+    ViewBag.Title = "Forums";
+}
+
+<div ng-controller="ForumListCtrl" ng-init="init(@Html.Raw(Json.Encode(Model)))">
+    <div class="list-group">
+        <a class="list-group-item" ng-repeat="forum in model" ng-click="clickItem(forum)">
+            <h4 class="list-group-item-heading">{{forum.Name}}<span class="pull-right">{{forum.Moderator.Fullname}}</span></h4>
+            <p class="list-group-item-text">
+                {{forum.Description}}
+                    <span class="pull-right">{{forum.Created|convertToDate|date:'short'}}</span>
+            </p>
+        </a>
+    </div>
+</div>

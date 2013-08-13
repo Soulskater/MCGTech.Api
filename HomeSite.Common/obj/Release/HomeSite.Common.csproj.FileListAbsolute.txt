@@ -3,3 +3,8 @@ C:\Users\gmeszaros\Documents\GitHub\HomeSite\HomeSite.Common\bin\Release\HomeSit
 C:\Users\gmeszaros\Documents\GitHub\HomeSite\HomeSite.Common\obj\Release\HomeSite.Common.csprojResolveAssemblyReference.cache
 C:\Users\gmeszaros\Documents\GitHub\HomeSite\HomeSite.Common\obj\Release\HomeSite.Common.dll
 C:\Users\gmeszaros\Documents\GitHub\HomeSite\HomeSite.Common\obj\Release\HomeSite.Common.pdb
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\bin\Release\HomeSite.Common.dll
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\bin\Release\HomeSite.Common.pdb
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Release\HomeSite.Common.csprojResolveAssemblyReference.cache
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Release\HomeSite.Common.dll
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Release\HomeSite.Common.pdb

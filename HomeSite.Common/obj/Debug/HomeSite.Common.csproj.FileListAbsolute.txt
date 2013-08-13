@@ -8,3 +8,7 @@ C:\Users\Gábor\Documents\GitHub\HomeSite\HomeSite.Common\bin\Debug\HomeSite.Com
 C:\Users\Gábor\Documents\GitHub\HomeSite\HomeSite.Common\obj\Debug\HomeSite.Common.dll
 C:\Users\Gábor\Documents\GitHub\HomeSite\HomeSite.Common\obj\Debug\HomeSite.Common.pdb
 C:\Users\Gábor\Documents\GitHub\HomeSite\HomeSite.Common\obj\Debug\HomeSite.Common.csprojResolveAssemblyReference.cache
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\bin\Debug\HomeSite.Common.dll
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\bin\Debug\HomeSite.Common.pdb
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Debug\HomeSite.Common.dll
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Debug\HomeSite.Common.pdb

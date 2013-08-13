@@ -16,8 +16,8 @@
 }
 
 .navbar-text {
-    margin-top: 13px;
-    margin-bottom: 13px;
+    margin-top: 9px;
+    margin-bottom: 9px;
 }
 
 .light-caret {
@@ -36,14 +36,4 @@
     white-space: nowrap;
 }
 
-.left-align {
-    text-align: left;
-}
-
-.center-align {
-    text-align: center;
-}
-
-.right-align {
-    text-align: right;
-}
+.light-panel { background:#D4ECFA; border-color:#80C1E6; }

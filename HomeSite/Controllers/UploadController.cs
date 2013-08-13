@@ -30,7 +30,7 @@ namespace HomeSite.Controllers
                 var repo = new UserRepository();
                 var user = repo.GetList().First(u => u.Email == HttpContext.User.Identity.Name);
                 var extension = Path.GetExtension(fileName);
-                var path = Path.Combine(Server.MapPath("~/Images/UserProfiles"), user.Identifier + extension);
+                var path = Path.Combine(Server.MapPath("~/Images/UserProfiles"), user.Identifier + ".png");
                 file.SaveAs(path);
             }
 

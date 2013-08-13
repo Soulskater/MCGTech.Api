@@ -9,11 +9,11 @@
     <property name="Firstname"/>
     <property name="Lastname"/>
     <set name="Forums" inverse="true" lazy="true" >
-      <key column="Id"/>
+      <key column="moderatorId"/>
       <one-to-many class="Forum"/>
     </set>
     <set name="Posts" inverse="true" lazy="true" >
-      <key column="Id"/>
+      <key column="userId"/>
       <one-to-many class="ForumPost"/>
     </set>
   </class>

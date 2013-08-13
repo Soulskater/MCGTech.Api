@@ -1,0 +1,28 @@
+﻿@model HomeSite.Models.ForumModel
+@{
+    ViewBag.Title = Model.Name;
+}
+<div ng-controller="ForumCtrl" ng-init="init(@Html.Raw(Json.Encode(Model)))">
+    <h4>{{model.Description}}</h4>
+    <div class="well">
+        <h4>Posts</h4>
+        <div class="list-group">
+            <div class="list-group-item" ng-repeat="post in model.Posts">
+                <h4 class="list-group-item-heading">{{post.User.Fullname}}<span class="pull-right">{{post.Created|convertToDate|date:'short'}}</span></h4>
+                <p class="list-group-item-text">
+                    <span style="word-wrap: break-word;">{{post.PostText}}
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="well light-panel">
+        <h4>Commit a Post</h4>
+        <textarea class="form-control" rows="6" ng-model="newPostText"></textarea>
+        <h5>Your code snippets</h5>
+        <textarea class="form-control" rows="20" ng-model="newPostText"></textarea>
+        <div class="text-right" style="padding-top: 10px;">
+            <button class="btn btn-default btn-lg" ng-click="clickPost()">Post</button>
+        </div>
+    </div>
+</div>

@@ -22,6 +22,14 @@ namespace HomeSite
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+                        "~/Scripts/moment.js"));
+
+            //
+            //Google code pretiffy lib
+            bundles.Add(new ScriptBundle("~/bundles/prettify").Include(
+                        "~/Scripts/Prettify/run_prettify.js", "~/Scripts/Prettify/lang-css.js"));
+            bundles.Add(new StyleBundle("~/Content/prettify/css").Include("~/Content/Prettify/prettify.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
@@ -36,7 +44,14 @@ namespace HomeSite
             //bundles.Add(new StyleBundle("~/Content/angular/css")
             //   .Include("~/Content/angular.css"));
             bundles.Add(new ScriptBundle("~/bundles/angular")
-               .Include("~/Scripts/angular.js"));
+               .Include("~/Scripts/angular.js")
+               .Include("~/Scripts/angular-ui.js")
+               .Include("~/Scripts/angular-sanitize.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/angular")
+               .IncludeDirectory("~/Scripts/Models", "*.js")
+               .IncludeDirectory("~/Scripts/Modules", "*.js")
+               .IncludeDirectory("~/Scripts/Controllers", "*.js"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

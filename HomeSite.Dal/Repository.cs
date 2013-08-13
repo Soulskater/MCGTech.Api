@@ -8,46 +8,41 @@ using System.Threading.Tasks;
 
 namespace HomeSite.Dal
 {
-    public abstract class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IDisposable, IRepository<T> where T : class
     {
+        private ISession session = NHibernateHelper.OpenSession();
+
         public void Add(T item)
         {
-            using (ISession session = NHibernateHelper.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
             {
-                using (ITransaction transaction = session.BeginTransaction())
-                {
-                    session.Save(item);
-                    transaction.Commit();
-                }
+                session.Save(item);
+                transaction.Commit();
             }
         }
 
         public void Delete(T item)
         {
-            using (ISession session = NHibernateHelper.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
             {
-                using (ITransaction transaction = session.BeginTransaction())
-                {
-                    session.Delete(item);
-                    transaction.Commit();
-                }
+                session.Delete(item);
+                transaction.Commit();
             }
         }
 
         public IList<T> GetList()
         {
-            using (ISession session = NHibernateHelper.OpenSession())
-            {
-                return session.CreateCriteria<T>().List<T>();
-            }
+            return session.CreateCriteria<T>().List<T>();
         }
 
         public IList<T> Query(ICriterion expression)
         {
-            using (ISession session = NHibernateHelper.OpenSession())
-            {
-                return session.CreateCriteria<T>().Add(expression).List<T>();
-            }
+            return session.CreateCriteria<T>().Add(expression).List<T>();
+        }
+
+        public void Dispose()
+        {
+            session.Dispose();
         }
     }
 }

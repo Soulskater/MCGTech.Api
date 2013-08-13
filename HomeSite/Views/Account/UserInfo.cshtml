@@ -1,44 +1,46 @@
 ﻿@model HomeSite.Models.UserProfile
 
-@if (Model.IsAuthenticated)
-{
-    <div class="dropdown pull-right navbar-text">
-        @if (File.Exists(String.Concat(Request.MapPath("~/Images/UserProfiles/"), Model.Identifier, ".jpg")))
-        {
-            <img src=@String.Concat(Url.Content("~/Images/UserProfiles/"), Model.Identifier, ".jpg") width="24px" alt="" class="dropdown-toggle" data-toggle="dropdown" />
-        }
-        else
-        {
-            <img src="~/Images/user_blue.png" width="24px" alt="" class="dropdown-toggle" data-toggle="dropdown" />
-        }
-        <span class="caret light-caret"></span>
-        <div class="dropdown-menu">
-            <div class="dropdown-item">@Model.Firstname @Model.Lastname </div>
-            <div class="dropdown-item">
-                <img src=@String.Concat(Url.Content("~/Images/UserProfiles/"), Model.Identifier, ".jpg") width="128px" alt=""/>
-            </div>
-            <div class="dropdown-header center-align">Change Picture</div>
-            @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            { 
-                <div class="dropdown-item">
-                    <input type="file" name="file" />
-                </div>
-                <div class="dropdown-item right-align">
-                    <input class="btn btn-default btn-xs" type="submit" name="Submit" value="Upload" />
-                </div>
+<div ng-init="init('@Model.Identifier')">
+    @if (Model.IsAuthenticated)
+    {
+        <div class="dropdown pull-right navbar-text">
+            @if (File.Exists(String.Concat(Request.MapPath("~/Images/UserProfiles/"), Model.Identifier, ".jpg")))
+            {
+                <img src=@String.Concat(Url.Content("~/Images/UserProfiles/"), Model.Identifier, ".jpg") width="32px" alt="" class="dropdown-toggle" data-toggle="dropdown" />
             }
-            <div class="divider"></div>
-            <div class="dropdown-item">
-                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            else
+            {
+                <img src="~/Images/user_blue.png" width="32px" alt="" class="dropdown-toggle" data-toggle="dropdown" />
+            }
+            <span class="caret light-caret"></span>
+            <div class="dropdown-menu">
+                <div class="dropdown-item">@Model.Firstname @Model.Lastname </div>
+                <div class="dropdown-item">
+                    <img src=@String.Concat(Url.Content("~/Images/UserProfiles/"), Model.Identifier, ".jpg") width="128px" alt=""/>
+                </div>
+                <div class="dropdown-header text-center">Change Picture</div>
+                @using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                { 
+                    <div class="dropdown-item">
+                        <input type="file" name="file" />
+                    </div>
+                    <div class="dropdown-item text-right">
+                        <input class="btn btn-default btn-xs" type="submit" name="Submit" value="Upload" />
+                    </div>
                 }
+                <div class="divider"></div>
+                <div class="dropdown-item">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    }
+                </div>
             </div>
         </div>
-    </div>
-}
-else
-{
-    @Html.ActionLink("Log In", "LogIn", "Account", new { @class = "navbar-text pull-right" })
-}
+    }
+    else
+    {
+        @Html.ActionLink("Log In", "LogIn", "Account", new { @class = "navbar-text pull-right" })
+    }
+</div>

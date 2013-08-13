@@ -5,18 +5,21 @@
     <title>@ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap/css")
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/Scripts/angular")
+    @Scripts.Render("~/bundles/moment")
+    <script type="text/javascript" src="http://balupton.github.com/jquery-syntaxhighlighter/scripts/jquery.syntaxhighlighter.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">$.SyntaxHighlighter.init();</script>
 </head>
-<body ng-app>
+<body ng-app="homesite" ng-controller="MainCtrl">
     <div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
         <div class="container">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a href="../" class="navbar-brand" style="max-width:250px;">Research & Development</a>
             <div class="nav-collapse collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -37,6 +40,7 @@
                     </li>
                 </ul>
             </div>
+            @{Html.RenderAction("UserInfo", "Account");}
         </div>
     </div>
     <div class="content-body">
@@ -52,10 +56,5 @@
             <h5>&copy; @DateTime.Now.Year - Mészáros Gábor</h5>
         </div>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/angular")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
