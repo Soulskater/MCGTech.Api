@@ -20,8 +20,13 @@
 <body ng-app="homesite" ng-controller="MainCtrl">
     <div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
         <div class="container">
-            <a href="../" class="navbar-brand" style="max-width:250px;">Research & Development</a>
-            <div class="nav-collapse collapse bs-navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="navbar-brand" style="max-width: 250px;">Research & Development</a>
+            <div class="nav-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
                     <li>
                         @Html.ActionLink("Projects", "Index", "Projects")
@@ -39,8 +44,12 @@
                         @Html.ActionLink("About", "About", "Home")
                     </li>
                 </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        @{Html.RenderAction("UserInfo", "Account");}
+                    </li>
+                </ul>
             </div>
-            @{Html.RenderAction("UserInfo", "Account");}
         </div>
     </div>
     <div class="content-body">

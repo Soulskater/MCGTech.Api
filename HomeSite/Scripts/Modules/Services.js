@@ -27,6 +27,31 @@ angular.module('homesite.service', [], function ($provide) {
         };
     });
 
+    $provide.service('dialogService', ['$dialog', function ($dialog) {
+        var opts = {
+            backdrop: true,
+            keyboard: true,
+            dialogFade: true,
+            backdropFade: true,
+            backdropClick: true,
+            templateUrl: '/Content/Templates/Dialog.html',
+            controller: ''
+        };
+
+        var openDialog = function (controller) {
+            opts.controller = controller;
+            var d = $dialog.dialog(opts);
+            d.open().then(function (result) {
+                if (result) {
+                    alert('dialog closed with result: ' + result);
+                }
+            });
+        };
+        return {
+            openDialog: openDialog
+        }
+    }]);
+
     $provide.service('userService', function () {
         var loggedUser = null;
 

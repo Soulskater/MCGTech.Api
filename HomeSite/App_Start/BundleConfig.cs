@@ -8,6 +8,7 @@ namespace HomeSite
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
+            BundleTable.EnableOptimizations = false;
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -45,7 +46,8 @@ namespace HomeSite
             //   .Include("~/Content/angular.css"));
             bundles.Add(new ScriptBundle("~/bundles/angular")
                .Include("~/Scripts/angular.js")
-               .Include("~/Scripts/angular-ui.js")
+               .Include("~/Scripts/ui-bootstrap-0.5.0.js")
+               //.Include("~/Scripts/angular-ui.js")
                .Include("~/Scripts/angular-sanitize.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/angular")

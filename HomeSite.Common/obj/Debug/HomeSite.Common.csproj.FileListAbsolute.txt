@@ -12,3 +12,4 @@ C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\bin\Debug\HomeSite.C
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\bin\Debug\HomeSite.Common.pdb
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Debug\HomeSite.Common.dll
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Debug\HomeSite.Common.pdb
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Common\obj\Debug\HomeSite.Common.csprojResolveAssemblyReference.cache

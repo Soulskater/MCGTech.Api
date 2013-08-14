@@ -1,1 +1,1 @@
-﻿var AppModule = angular.module('homesite', ['homesite.service', 'homesite.directive', 'homesite.filter', 'ui', 'ngSanitize']);
+﻿var AppModule = angular.module('homesite', ['homesite.service', 'homesite.directive', 'homesite.filter', 'ngSanitize', 'ui.bootstrap']);
