@@ -8,6 +8,11 @@ namespace HomeSite.Dal.Domain
 {
     public class User
     {
+        public User()
+        {
+            this.Forums = new System.Collections.Generic.List<Forum>();
+        }
+
         public virtual int UserID { get; set; }
         public virtual string Email { get; set; }
         public virtual string Identifier { get; set; }
@@ -15,5 +20,6 @@ namespace HomeSite.Dal.Domain
         public virtual string Lastname { get; set; }
         public virtual ICollection<Forum> Forums { get; set; }
         public virtual ICollection<ForumPost> Posts { get; set; }
+        public virtual ICollection<ChatGroup> ChatGroups { get; set; }
     }
 }

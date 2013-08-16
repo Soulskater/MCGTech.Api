@@ -7,6 +7,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HomeSite;
 using HomeSite.Controllers;
 using HomeSite.Dal;
+using HomeSite.Dal.Domain;
+using NHibernate.Criterion;
 
 namespace HomeSite.Tests.Controllers
 {
@@ -16,14 +18,26 @@ namespace HomeSite.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            // Arrange
-            //HomeController controller = new HomeController();
+            using (var repo = new Repository())
+            {
+                var user = repo.Query<User>(Expression.Eq(Projections.Property("UserID"), 6)).First();
 
-            //// Act
-            //ViewResult result = controller.Index() as ViewResult;
+                var group = new ChatGroup()
+                {
+                    Created = DateTime.Now,
+                    Inactive = false,
+                    Users = new List<User>() { user },
+                };
+                group.ChatLogs.Add(new ChatLog()
+                {
+                    Created = DateTime.Now,
+                    Message = "TestMessage",
+                    Sender = user
+                });
 
-            //// Assert
-            //Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+                repo.Add(group);
+                var list = repo.GetList<ChatGroup>();
+            }
         }
 
         [TestMethod]

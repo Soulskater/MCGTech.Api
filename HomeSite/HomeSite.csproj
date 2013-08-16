@@ -203,6 +203,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChatAPIController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\CodeSamplesController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -366,6 +368,8 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\user.png" />
     <Content Include="Images\user_blue.png" />
+    <Content Include="Images\icons-white.png" />
+    <Content Include="Images\icons-black.png" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
@@ -786,6 +790,7 @@
     <Content Include="Scripts\ui-bootstrap-0.5.0.min.js.map">
       <DependentUpon>ui-bootstrap-0.5.0.js</DependentUpon>
     </Content>
+    <Content Include="Views\Chat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

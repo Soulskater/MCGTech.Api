@@ -38,4 +38,6 @@ C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Dal\bin\Debug\NHibernate.pd
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Dal\bin\Debug\NHibernate.xml
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Dal\obj\Debug\HomeSite.Dal.dll
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Dal\obj\Debug\HomeSite.Dal.pdb
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Dal\bin\Debug\Mapping\ChatLog.hbm.xml
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Dal\bin\Debug\Mapping\ChatGroup.hbm.xml
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Dal\obj\Debug\HomeSite.Dal.csprojResolveAssemblyReference.cache

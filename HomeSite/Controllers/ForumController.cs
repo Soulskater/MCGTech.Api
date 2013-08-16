@@ -17,29 +17,48 @@ namespace HomeSite.Controllers
     public class ForumController : Controller
     {
         [HttpPost]
-        public void CreatePost(DateTime created, string postText, string userIdentifier, string forumIdentifier)
+        public ActionResult CreatePost(DateTime created, string postText, string forumIdentifier)
         {
-            var userRepo = new UserRepository();
-            var forumRepo = new ForumRepository();
-            var user = userRepo.Query(Expression.Eq(Projections.Property("Identifier"), userIdentifier)).First();
-            var forum = forumRepo.Query(Expression.Eq(Projections.Property("Identifier"), forumIdentifier)).First();
-            userRepo.Dispose();
-            forumRepo.Dispose();
-            new Repository<ForumPost>().Add(new ForumPost()
+            using (var repo = new Repository())
             {
-                Created = created,
-                Forum = forum,
-                User = user,
-                PostText = postText
-            });
+                var user = repo.Query<User>(Expression.Eq(Projections.Property("Email"), User.Identity.Name)).First();
+                var forum = repo.Query<Forum>(Expression.Eq(Projections.Property("Identifier"), forumIdentifier)).First();
+                repo.Add(new ForumPost()
+                {
+                    Created = created,
+                    Forum = forum,
+                    User = user,
+                    PostText = postText
+                });
+                var posts = repo.Query<ForumPost>(Expression.Eq(Projections.Property("Forum"), forum));
+                return Json(Mapper.Map<IList<ForumPostModel>>(posts));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CreateForum(DateTime created, string name, string description)
+        {
+            using (var repo = new Repository())
+            {
+                var user = repo.Query<User>(Expression.Eq(Projections.Property("Email"), User.Identity.Name)).First();
+                repo.Add<Forum>(new Forum()
+                {
+                    Created = created,
+                    Name = name,
+                    Moderator = user,
+                    Description = description,
+                    Identifier = Guid.NewGuid().ToString()
+                });
+                return Json(Mapper.Map<IList<ForumModel>>(repo.GetList<ForumModel>()));
+            }
         }
 
         [HttpPost]
         public ActionResult GetPosts(string forumIdentifier, int skip, int top)
         {
-            using (ForumRepository repo = new ForumRepository())
+            using (Repository repo = new Repository())
             {
-                var forum = repo.Query(Expression.Eq(Projections.Property("Identifier"), forumIdentifier)).First();
+                var forum = repo.Query<Forum>(Expression.Eq(Projections.Property("Identifier"), forumIdentifier)).First();
                 return Json(Mapper.Map<IList<ForumPostModel>>(forum.Posts));
             }
         }
@@ -48,9 +67,9 @@ namespace HomeSite.Controllers
         // GET: /ForumList/
         public ActionResult ForumList()
         {
-            using (ForumRepository repo = new ForumRepository())
+            using (Repository repo = new Repository())
             {
-                return View(Mapper.Map<IList<ForumModel>>(repo.GetList()));
+                return View(Mapper.Map<IList<ForumModel>>(repo.GetList<Forum>()));
             }
         }
 
@@ -61,9 +80,11 @@ namespace HomeSite.Controllers
             var forumIdentifier = Request.QueryString["ID"];
             if (forumIdentifier == null)
                 return RedirectToAction("ForumList", "Forum");
-            var forumRepo = new ForumRepository();
-            var forum = forumRepo.Query(Expression.Eq(Projections.Property("Identifier"), forumIdentifier)).First();
-            return View(Mapper.Map<ForumModel>(forum));
+            using (var repo = new Repository())
+            {
+                var forum = repo.Query<Forum>(Expression.Eq(Projections.Property("Identifier"), forumIdentifier)).First();
+                return View(Mapper.Map<ForumModel>(forum));
+            }
         }
     }
 }

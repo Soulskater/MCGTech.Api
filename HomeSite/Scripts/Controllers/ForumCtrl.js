@@ -8,10 +8,9 @@
         };
 
         $scope.clickPost = function () {
-            $service.createPost($scope.newPostText, $user.getUser(), $scope.model.Identifier, function () {
-                $service.getPosts($scope.model.Identifier, 0, 0, function (result) {
-                    $scope.model.Posts = result;
-                });
+            $service.createPost($scope.newPostText, $scope.model.Identifier).then(function (data) {
+                $scope.model.Posts = data;
+                $scope.newPostText = "";
             });
         };
     }]);

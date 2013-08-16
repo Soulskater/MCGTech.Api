@@ -38,7 +38,7 @@ namespace HomeSite
                 .Include("~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap/css")
-                .Include("~/Content/bootstrap.css"));
+                .Include("~/Content/bootstrap.css", "~/Content/bootstrap-glyphicons.css"));
 
             //ANGULAR
             //

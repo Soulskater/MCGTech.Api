@@ -3,7 +3,7 @@
 <div ng-init="init('@Model.Identifier')">
     @if (Model.IsAuthenticated)
     {
-        <div class="dropdown pull-right navbar-text">
+        <div class="dropdown navbar-text">
             @if (File.Exists(String.Concat(Request.MapPath("~/Images/UserProfiles/"), Model.Identifier, ".png")))
             {
                 <img src=@String.Concat(Url.Content("~/Images/UserProfiles/"), Model.Identifier, ".png") width="32px" height="32px" alt="" class="dropdown-toggle" data-toggle="dropdown" />

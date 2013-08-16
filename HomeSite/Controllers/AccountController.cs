@@ -11,6 +11,7 @@ using WebMatrix.WebData;
 using HomeSite.Filters;
 using HomeSite.Models;
 using HomeSite.Dal;
+using HomeSite.Dal.Domain;
 
 namespace HomeSite.Controllers
 {
@@ -24,13 +25,14 @@ namespace HomeSite.Controllers
 
             if (model.IsAuthenticated)
             {
-                var repo = new UserRepository();
-                var dbuser = repo.GetList().First(user => user.Email == HttpContext.User.Identity.Name);
-                model.Firstname = dbuser.Firstname;
-                model.Lastname = dbuser.Lastname;
-                model.Identifier = dbuser.Identifier;
-                //Return populated ViewModel
-                return this.PartialView(model);
+                using (var repo = new Repository())
+                {
+                    var dbuser = repo.GetList<User>().First(user => user.Email == HttpContext.User.Identity.Name);
+                    model.Firstname = dbuser.Firstname;
+                    model.Lastname = dbuser.Lastname;
+                    model.Identifier = dbuser.Identifier;
+                    return this.PartialView(model);
+                }
             }
 
             //return the model with IsAuthenticated only

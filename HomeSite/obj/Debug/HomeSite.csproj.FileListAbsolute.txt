@@ -310,3 +310,5 @@ C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite\obj\Debug\HomeSite.dll
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite\obj\Debug\HomeSite.pdb
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite\bin\AutoMapper.dll
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite\bin\AutoMapper.xml
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite\bin\Mapping\ChatLog.hbm.xml
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite\bin\Mapping\ChatGroup.hbm.xml

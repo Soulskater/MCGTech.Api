@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="HomeSite.Dal" namespace="HomeSite.Dal.Domain">
+  <class name="UserChatGroup">
+    <many-to-one name="ChatGroup" column="chatGroupId" />
+    <many-to-one name="User" column="userId" />
+  </class>
+</hibernate-mapping>

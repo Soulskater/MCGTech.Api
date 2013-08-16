@@ -7,11 +7,18 @@
 <div ng-controller="ForumListCtrl" ng-init="init(@Html.Raw(Json.Encode(Model)))">
     <div class="list-group">
         <a class="list-group-item" ng-repeat="forum in model" ng-click="clickItem(forum)">
-            <h4 class="list-group-item-heading">{{forum.Name}}<span class="pull-right">{{forum.Moderator.Fullname}}</span></h4>
+            <h4 class="list-group-item-heading" style="height:35px;">{{forum.Name}}
+                <span class="pull-right">{{forum.Moderator.Fullname}} 
+                    <img src="/Images/UserProfiles/{{forum.Moderator.Identifier}}.png" onerror="this.src='/Images/user_blue.png'" width="32px" height="32px" alt="" class="dropdown-toggle" data-toggle="dropdown" />
+                </span>
+            </h4>
             <p class="list-group-item-text">
                 {{forum.Description}}
                     <span class="pull-right">{{forum.Created|convertToDate|date:'short'}}</span>
             </p>
         </a>
+    </div>
+    <div class="text-right" style="margin-top: 35px;">
+        <button class="btn btn-info btn-lg" ng-click="addNew()">Create New Forum</button>
     </div>
 </div>

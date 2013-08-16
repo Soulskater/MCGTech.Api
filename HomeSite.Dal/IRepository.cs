@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HomeSite.Dal
 {
-    public interface IRepository<T>
+    public interface IRepository
     {
-        void Add(T item);
+        void Add<T>(T item) where T : class;
     }
 }

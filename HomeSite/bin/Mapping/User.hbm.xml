@@ -8,13 +8,17 @@
     <property name="Identifier"/>
     <property name="Firstname"/>
     <property name="Lastname"/>
-    <set name="Forums" inverse="true" lazy="true" >
+    <set name="Forums" inverse="true" lazy="true" cascade="all" >
       <key column="moderatorId"/>
       <one-to-many class="Forum"/>
     </set>
-    <set name="Posts" inverse="true" lazy="true" >
+    <set name="Posts" inverse="true" lazy="true" cascade="all" >
       <key column="userId"/>
       <one-to-many class="ForumPost"/>
+    </set>
+    <set name="ChatGroups" table="UserChatGroup" cascade="all">
+      <key column="userId"/>
+      <many-to-many class="ChatGroup" column="chatGroupId"/>
     </set>
   </class>
 </hibernate-mapping>

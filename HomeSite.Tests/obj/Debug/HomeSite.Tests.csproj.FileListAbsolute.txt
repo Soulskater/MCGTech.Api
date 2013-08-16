@@ -283,3 +283,5 @@ C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Tests\obj\Debug\HomeSite.Te
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Tests\obj\Debug\HomeSite.Tests.pdb
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Tests\bin\Debug\AutoMapper.dll
 C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Tests\bin\Debug\AutoMapper.xml
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Tests\bin\Debug\Mapping\ChatLog.hbm.xml
+C:\Users\gmeszaros\Documents\GitHub\MCGTech\HomeSite.Tests\bin\Debug\Mapping\ChatGroup.hbm.xml

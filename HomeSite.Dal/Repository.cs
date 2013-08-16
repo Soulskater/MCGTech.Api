@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace HomeSite.Dal
 {
-    public class Repository<T> : IDisposable, IRepository<T> where T : class
+    public class Repository : IDisposable, IRepository
     {
         private ISession session = NHibernateHelper.OpenSession();
 
-        public void Add(T item)
+        public void Add<T>(T item) where T : class
         {
             using (ITransaction transaction = session.BeginTransaction())
             {
@@ -21,7 +21,7 @@ namespace HomeSite.Dal
             }
         }
 
-        public void Delete(T item)
+        public void Delete<T>(T item) where T : class
         {
             using (ITransaction transaction = session.BeginTransaction())
             {
@@ -30,12 +30,12 @@ namespace HomeSite.Dal
             }
         }
 
-        public IList<T> GetList()
+        public IList<T> GetList<T>() where T : class
         {
             return session.CreateCriteria<T>().List<T>();
         }
 
-        public IList<T> Query(ICriterion expression)
+        public IList<T> Query<T>(ICriterion expression) where T : class
         {
             return session.CreateCriteria<T>().Add(expression).List<T>();
         }
