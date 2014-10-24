@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="SiteDBConnection-Web.config Connection String" description="SiteDBConnection Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:kktim8kbsn.database.windows.net,1433;Database=HomeSite;User ID=gmeszaros@kktim8kbsn;Password=Southpark87;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\gmeszaros\\Documents\\GitHub\\MCGTech\\HomeSite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SiteDBConnection']/@connectionString" />
-  </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-HomeSite-20130807111947;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-HomeSite-20130807111947.mdf" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\gmeszaros\\Documents\\GitHub\\MCGTech\\HomeSite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
-  </parameter>
-</parameters>
