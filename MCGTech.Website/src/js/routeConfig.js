@@ -6,19 +6,19 @@ angular.module("MCGTech")
         function ($routeProvider, $locationProvider) {
             $routeProvider.
                 when('/projects', {
-                    templateUrl: 'features/projects/projects.html',
+                    templateUrl: 'src/features/projects/projects.html',
                     controller: 'ProjectsCtrl'
                 }).
                 when('/blog', {
-                    templateUrl: 'features/blog/blog.html',
+                    templateUrl: 'src/features/blog/blog.html',
                     controller: 'AboutCtrl'
                 }).
                 when('/about', {
-                    templateUrl: 'features/about/about.html',
+                    templateUrl: 'src/features/about/about.html',
                     controller: 'AboutCtrl'
                 }).
                 when('/home', {
-                    templateUrl: 'features/home/home.html',
+                    templateUrl: 'src/features/home/home.html',
                     controller: 'HomeCtrl'
                 }).
                 otherwise({
