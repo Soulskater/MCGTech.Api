@@ -27,7 +27,9 @@ namespace MCGTech.Api
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
+                AuthorizeEndpointPath = new PathString(""),
                 TokenEndpointPath = new PathString("/token"),
+                ApplicationCanDisplayErrors = true,
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new AuthorizationServerProvider()
             };

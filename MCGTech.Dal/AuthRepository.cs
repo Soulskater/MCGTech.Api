@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using MCGTech.Dal.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -12,20 +13,22 @@ namespace MCGTech.Dal
     {
         private AuthContext _ctx;
 
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<CustomIdentityUser> _userManager;
 
         public AuthRepository()
         {
             _ctx = new AuthContext();
-            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
+            _userManager = new UserManager<CustomIdentityUser>(new UserStore<CustomIdentityUser>(_ctx));
         }
 
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
-            IdentityUser user = new IdentityUser
+            CustomIdentityUser user = new CustomIdentityUser
             {
-                UserName = userModel.Email,
-                Email = userModel.Email
+                UserName = userModel.UserName,
+                Email = userModel.UserName,
+                FirstName = userModel.FirstName,
+                LastName = userModel.LastName
             };
 
             var result = await _userManager.CreateAsync(user, userModel.Password);
@@ -33,9 +36,16 @@ namespace MCGTech.Dal
             return result;
         }
 
-        public async Task<IdentityUser> FindUser(string userName, string password)
+        public async Task<CustomIdentityUser> FindUser(string userName)
         {
-            IdentityUser user = await _userManager.FindAsync(userName, password);
+            CustomIdentityUser user = _userManager.FindByName(userName);
+
+            return user;
+        }
+
+        public async Task<CustomIdentityUser> FindUser(string userName, string password)
+        {
+            CustomIdentityUser user = await _userManager.FindAsync(userName, password);
 
             return user;
         }

@@ -1,4 +1,6 @@
-﻿using MCGTech.Dal;
+﻿using MCGTech.Api.Models;
+using MCGTech.Dal;
+using MCGTech.Dal.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,17 @@ namespace MCGTech.Api.Controllers
             }
 
             return Ok();
+        }
+
+        [Authorize]
+        [Route("user")]
+        public async Task<IHttpActionResult> GetUserProfile()
+        {
+            var user = await _repo.FindUser(User.Identity.Name);
+            if (user != null)
+                return Ok(new UserProfile(user));
+            else
+                return Unauthorized();
         }
 
         protected override void Dispose(bool disposing)
