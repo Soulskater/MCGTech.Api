@@ -76,6 +76,13 @@
     <Compile Include="AuthContext.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="MCGTechContext.cs" />
+    <Compile Include="Migrations\201411182228005_AddBlog.cs" />
+    <Compile Include="Migrations\201411182228005_AddBlog.Designer.cs">
+      <DependentUpon>201411182228005_AddBlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\CustomIdentityUser.cs" />
     <Compile Include="Models\ICustomIdentityUser.cs" />
     <Compile Include="Models\Project.cs" />
@@ -85,6 +92,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201411182228005_AddBlog.resx">
+      <DependentUpon>201411182228005_AddBlog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
