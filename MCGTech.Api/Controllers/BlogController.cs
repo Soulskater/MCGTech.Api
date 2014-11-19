@@ -1,4 +1,5 @@
-﻿using MCGTech.Dal;
+﻿using MCGTech.Api.Models;
+using MCGTech.Dal;
 using MCGTech.Dal.Models;
 using System;
 using System.Collections.Generic;
@@ -31,14 +32,15 @@ namespace MCGTech.Api.Controllers
 
         [Route("create")]
         [HttpPost]
-        public void CreateBlogEntry(string title, string content)
+        public void CreateBlogEntry([FromBody]BlogEntryModel newEntry)
         {
-            using (var context = new MCGTech.Dal.MCGTechContext())
+            using (var context = new MCGTechContext())
             {
                 context.Blogs.Add(new Blog()
                 {
-                    Title = title,
-                    Content = content
+                    Title = newEntry.Title,
+                    Content = newEntry.Content,
+                    Created = DateTime.Now
                 });
                 context.SaveChanges();
             }
