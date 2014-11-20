@@ -26,7 +26,12 @@ namespace MCGTech.Api.Controllers
         {
             using (var context = new MCGTech.Dal.MCGTechContext())
             {
-                return context.Blogs.ToList();
+                var blogs = context.Blogs.ToList();
+                blogs.Sort(delegate(Blog x, Blog y)
+                {
+                    return -1 * (x.Created.CompareTo(y.Created));
+                });
+                return blogs;
             }
         }
 
