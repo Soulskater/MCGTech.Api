@@ -13,7 +13,9 @@ namespace MCGTech.Dal
     {
         public DbSet<Project> Projects { get; set; }
 
-        public DbSet<Blog> Blogs { get; set; } 
+        public DbSet<Blog> Blogs { get; set; }
+
+        public DbSet<BlogComment> BlogComments { get; set; } 
 
         public MCGTechContext()
             : base("name=MCGTechDatabase")

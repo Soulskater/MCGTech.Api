@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,6 @@ namespace MCGTech.Dal.Models
 
         public DateTime Created { get; set; }
 
-        public List<BlogComment> Comments { get; set; }
+        public virtual List<BlogComment> Comments { get; set; }
     }
 }

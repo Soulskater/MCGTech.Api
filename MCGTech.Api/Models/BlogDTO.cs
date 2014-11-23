@@ -5,10 +5,16 @@ using System.Web;
 
 namespace MCGTech.Api.Models
 {
-    public class BlogEntryModel
+    public class BlogDTO
     {
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime Created { get; set; }
+
+        public int BlogId { get; set; }
+
+        public List<BlogCommentDTO> Comments { get; set; }
     }
 }

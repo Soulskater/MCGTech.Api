@@ -36,7 +36,7 @@ namespace MCGTech.Dal
             return result;
         }
 
-        public async Task<CustomIdentityUser> FindUser(string userName)
+        public CustomIdentityUser FindUser(string userName)
         {
             CustomIdentityUser user = _userManager.FindByName(userName);
 

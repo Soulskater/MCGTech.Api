@@ -48,7 +48,7 @@ namespace MCGTech.Api.Controllers
         [Route("user")]
         public async Task<IHttpActionResult> GetUserProfile()
         {
-            var user = await _repo.FindUser(User.Identity.Name);
+            var user = _repo.FindUser(User.Identity.Name);
             if (user != null)
                 return Ok(new UserProfile(user));
             else
