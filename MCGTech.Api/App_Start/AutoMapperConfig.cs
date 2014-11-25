@@ -17,7 +17,7 @@ namespace MCGTech.Api.App_Start
             AutoMapper.Mapper.CreateMap<BlogComment, BlogCommentDTO>()
                 .ForMember(dest => dest.User,
                opts => opts.MapFrom(src => new UserProfile(_repo.FindUser(src.UserId))));
-            AutoMapper.Mapper.CreateMap<Rate, RateDTO>();
+            AutoMapper.Mapper.CreateMap<Rating, RatingDTO>();
             AutoMapper.Mapper.CreateMap<Blog, BlogDTO>();
         }
     }

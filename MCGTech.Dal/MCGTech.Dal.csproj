@@ -76,21 +76,9 @@
     <Compile Include="AuthContext.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="MCGTechContext.cs" />
-    <Compile Include="Migrations\201411182228005_AddBlog.cs" />
-    <Compile Include="Migrations\201411182228005_AddBlog.Designer.cs">
-      <DependentUpon>201411182228005_AddBlog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411251605330_AddRate.cs" />
-    <Compile Include="Migrations\201411251605330_AddRate.Designer.cs">
-      <DependentUpon>201411251605330_AddRate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411251642418_AddRateUserId.cs" />
-    <Compile Include="Migrations\201411251642418_AddRateUserId.Designer.cs">
-      <DependentUpon>201411251642418_AddRateUserId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411251650563_AddRateCreated.cs" />
-    <Compile Include="Migrations\201411251650563_AddRateCreated.Designer.cs">
-      <DependentUpon>201411251650563_AddRateCreated.cs</DependentUpon>
+    <Compile Include="Migrations\201411252235355_Initial.cs" />
+    <Compile Include="Migrations\201411252235355_Initial.Designer.cs">
+      <DependentUpon>201411252235355_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
@@ -98,7 +86,7 @@
     <Compile Include="Models\CustomIdentityUser.cs" />
     <Compile Include="Models\ICustomIdentityUser.cs" />
     <Compile Include="Models\Project.cs" />
-    <Compile Include="Models\Rate.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
@@ -107,17 +95,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411182228005_AddBlog.resx">
-      <DependentUpon>201411182228005_AddBlog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411251605330_AddRate.resx">
-      <DependentUpon>201411251605330_AddRate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411251642418_AddRateUserId.resx">
-      <DependentUpon>201411251642418_AddRateUserId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411251650563_AddRateCreated.resx">
-      <DependentUpon>201411251650563_AddRateCreated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411252235355_Initial.resx">
+      <DependentUpon>201411252235355_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

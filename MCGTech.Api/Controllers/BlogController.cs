@@ -73,18 +73,18 @@ namespace MCGTech.Api.Controllers
 
         [Route("rate")]
         [HttpPost]
-        public void RateBlog(RateDTO rate)
+        public void RateBlog(RatingDTO rate)
         {
             var user = _repo.FindUser(User.Identity.Name);
 
             using (var context = new MCGTech.Dal.MCGTechContext())
             {
                 var blog = context.Blogs.FirstOrDefault(a => a.BlogId == rate.BlogId);
-                if (blog == null || blog.Rates.Any(r=> r.UserId == user.UserName))
+                if (blog == null || blog.Ratings.Any(r=> r.UserId == user.UserName))
                 {
                     return;
                 }
-                blog.Rates.Add(new Rate()
+                blog.Ratings.Add(new Rating()
                 {
                     UserId = user.UserName,
                     Value = rate.Value,

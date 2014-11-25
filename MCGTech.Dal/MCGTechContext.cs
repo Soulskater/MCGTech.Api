@@ -1,5 +1,4 @@
-﻿using MCGTech.Dal.Migrations;
-using MCGTech.Dal.Models;
+﻿using MCGTech.Dal.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,12 +14,14 @@ namespace MCGTech.Dal
 
         public DbSet<Blog> Blogs { get; set; }
 
-        public DbSet<BlogComment> BlogComments { get; set; } 
+        public DbSet<BlogComment> BlogComments { get; set; }
+
+        public DbSet<Rating> Ratings { get; set; }
 
         public MCGTechContext()
             : base("name=MCGTechDatabase")
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<MCGTechContext, Configuration>()); 
+                //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MCGTechContext, Configuration>()); 
                 //Database.SetInitializer<MCGTechContext>(new DropCreateDatabaseIfModelChanges<MCGTechContext>());
             }
     }
