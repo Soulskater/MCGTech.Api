@@ -19,6 +19,8 @@ namespace MCGTech.Dal.Models
 
         public DateTime Created { get; set; }
 
+        public virtual List<Rate> Rates { get; set; }
+
         public virtual List<BlogComment> Comments { get; set; }
     }
 }

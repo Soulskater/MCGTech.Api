@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using MCGTech.Api.App_Start;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace MCGTech.Api
     {
         public static void Register(HttpConfiguration config)
         {
+            //Register Automapper mappings
+            AutoMapperConfig.RegisterMappings();
+
             // Web API configuration and services
 
             // Web API routes

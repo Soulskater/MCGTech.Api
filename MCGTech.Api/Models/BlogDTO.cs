@@ -16,5 +16,7 @@ namespace MCGTech.Api.Models
         public int BlogId { get; set; }
 
         public List<BlogCommentDTO> Comments { get; set; }
+
+        public List<RateDTO> Rates { get; set; }
     }
 }
