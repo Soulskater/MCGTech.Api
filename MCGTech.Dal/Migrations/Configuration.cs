@@ -9,7 +9,7 @@ namespace MCGTech.Dal.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(MCGTech.Dal.MCGTechContext context)

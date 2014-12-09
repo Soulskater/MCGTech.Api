@@ -13,7 +13,7 @@ namespace MCGTech.Dal.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201411252235355_Initial"; }
+            get { return "201412092042284_Initial"; }
         }
         
         string IMigrationMetadata.Source

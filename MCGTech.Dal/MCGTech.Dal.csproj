@@ -76,13 +76,14 @@
     <Compile Include="AuthContext.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="MCGTechContext.cs" />
-    <Compile Include="Migrations\201411252235355_Initial.cs" />
-    <Compile Include="Migrations\201411252235355_Initial.Designer.cs">
-      <DependentUpon>201411252235355_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201412092042284_Initial.cs" />
+    <Compile Include="Migrations\201412092042284_Initial.Designer.cs">
+      <DependentUpon>201412092042284_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\BlogComment.cs" />
+    <Compile Include="Models\BlogPostDraft.cs" />
     <Compile Include="Models\CustomIdentityUser.cs" />
     <Compile Include="Models\ICustomIdentityUser.cs" />
     <Compile Include="Models\Project.cs" />
@@ -95,8 +96,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411252235355_Initial.resx">
-      <DependentUpon>201411252235355_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412092042284_Initial.resx">
+      <DependentUpon>201412092042284_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
