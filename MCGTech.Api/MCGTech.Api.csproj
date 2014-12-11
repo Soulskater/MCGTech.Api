@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BlogCommentDTO.cs" />
+    <Compile Include="Models\BlogPostDraftDTO.cs" />
     <Compile Include="Models\BlogDTO.cs" />
     <Compile Include="Models\RatingDTO.cs" />
     <Compile Include="Models\UserProfile.cs" />

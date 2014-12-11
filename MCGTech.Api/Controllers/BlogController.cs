@@ -32,22 +32,6 @@ namespace MCGTech.Api.Controllers
             return blogs;
         }
 
-        [Route("create")]
-        [HttpPost]
-        public void CreateBlogEntry([FromBody]BlogDTO newEntry)
-        {
-            using (var context = new MCGTechContext())
-            {
-                context.Blogs.Add(new Blog()
-                {
-                    Title = newEntry.Title,
-                    Content = newEntry.Content,
-                    Created = DateTime.Now
-                });
-                context.SaveChanges();
-            }
-        }
-
         [Route("comment/create")]
         [HttpPost]
         public void CreateComment([FromBody]BlogCommentDTO newComment)
@@ -80,7 +64,7 @@ namespace MCGTech.Api.Controllers
             using (var context = new MCGTech.Dal.MCGTechContext())
             {
                 var blog = context.Blogs.FirstOrDefault(a => a.BlogId == rate.BlogId);
-                if (blog == null || blog.Ratings.Any(r=> r.UserId == user.UserName))
+                if (blog == null || blog.Ratings.Any(r => r.UserId == user.UserName))
                 {
                     return;
                 }
@@ -88,6 +72,80 @@ namespace MCGTech.Api.Controllers
                 {
                     UserId = user.UserName,
                     Value = rate.Value,
+                    Created = DateTime.Now
+                });
+                context.SaveChanges();
+            }
+        }
+
+        [Route("draft")]
+        public List<BlogPostDraftDTO> GetBlogPostDrafts()
+        {
+            var context = new MCGTech.Dal.MCGTechContext();
+            var drafts = AutoMapper.Mapper.Map<List<BlogPostDraftDTO>>(context.BlogPostDrafts.ToList());
+
+            drafts.Sort(delegate(BlogPostDraftDTO x, BlogPostDraftDTO y)
+            {
+                return -1 * (x.LastSaved.CompareTo(y.LastSaved));
+            });
+            return drafts;
+        }
+
+        [Route("draft/save")]
+        [HttpPost]
+        public BlogPostDraftDTO SaveBlogPostDraft([FromBody]BlogPostDraftDTO draft)
+        {
+            var user = _repo.FindUser(User.Identity.Name);
+
+            BlogPostDraft blogPostDraft;
+
+            using (var context = new MCGTech.Dal.MCGTechContext())
+            {
+                blogPostDraft = context.BlogPostDrafts.FirstOrDefault(a => a.BlogPostDraftId == draft.BlogPostDraftId);
+                if (blogPostDraft != null)
+                {
+                    blogPostDraft = AutoMapper.Mapper.Map<BlogPostDraft>(draft);
+                }
+                else
+                {
+                    blogPostDraft = context.BlogPostDrafts.Add(new BlogPostDraft()
+                    {
+                        UserId = user.UserName,
+                        Title = draft.Title,
+                        Content = draft.Content,
+                        LastSaved = DateTime.Now
+                    });
+                }
+                context.SaveChanges();
+            }
+
+            return AutoMapper.Mapper.Map<BlogPostDraftDTO>(blogPostDraft);
+        }
+
+        [Route("draft/delete")]
+        [HttpPost]
+        public void DeleteBlogPostDraft([FromBody]int blogPostDraftId)
+        {
+            using (var context = new MCGTech.Dal.MCGTechContext())
+            {
+                var blogPostDraft = context.BlogPostDrafts.FirstOrDefault(draft => draft.BlogPostDraftId == blogPostDraftId);
+                context.BlogPostDrafts.Remove(blogPostDraft);
+                context.SaveChanges();
+            }
+        }
+
+        [Route("create")]
+        [HttpPost]
+        public void SaveBlogPost([FromBody]BlogPostDraftDTO draft)
+        {
+            var user = _repo.FindUser(User.Identity.Name);
+
+            using (var context = new MCGTech.Dal.MCGTechContext())
+            {
+                context.Blogs.Add(new Blog()
+                {
+                    Title = draft.Title,
+                    Content = draft.Content,
                     Created = DateTime.Now
                 });
                 context.SaveChanges();
