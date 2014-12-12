@@ -1,4 +1,6 @@
-﻿using MCGTech.Dal.Models;
+﻿using System.Web.Security;
+using MCGTech.Contracts.User;
+using MCGTech.Dal.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -11,9 +13,9 @@ namespace MCGTech.Dal
 {
     public class AuthRepository : IDisposable
     {
-        private AuthContext _ctx;
+        private readonly AuthContext _ctx;
 
-        private UserManager<CustomIdentityUser> _userManager;
+        private readonly UserManager<CustomIdentityUser> _userManager;
 
         public AuthRepository()
         {
@@ -21,33 +23,31 @@ namespace MCGTech.Dal
             _userManager = new UserManager<CustomIdentityUser>(new UserStore<CustomIdentityUser>(_ctx));
         }
 
-        public async Task<IdentityResult> RegisterUser(UserModel userModel)
+        public async Task<IdentityResult> RegisterUser(CustomIdentityUser userModel, string password)
         {
-            CustomIdentityUser user = new CustomIdentityUser
-            {
-                UserName = userModel.UserName,
-                Email = userModel.UserName,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName
-            };
-
-            var result = await _userManager.CreateAsync(user, userModel.Password);
+            var result = await _userManager.CreateAsync(userModel, password);
 
             return result;
         }
 
+        public async Task<bool> IsInRole(string userId, string role)
+        {
+            return await _userManager.IsInRoleAsync(userId, role);
+        }
+
+        public async Task<IdentityResult> AddToRole(string userId, string role)
+        {
+            return await _userManager.AddToRoleAsync(userId, role);
+        }
+
         public CustomIdentityUser FindUser(string userName)
         {
-            CustomIdentityUser user = _userManager.FindByName(userName);
-
-            return user;
+            return _userManager.FindByName(userName);
         }
 
         public async Task<CustomIdentityUser> FindUser(string userName, string password)
         {
-            CustomIdentityUser user = await _userManager.FindAsync(userName, password);
-
-            return user;
+            return await _userManager.FindAsync(userName, password);
         }
 
         public void Dispose()

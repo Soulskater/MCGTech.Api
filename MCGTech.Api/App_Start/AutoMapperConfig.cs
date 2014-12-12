@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MCGTech.Api.Models;
+using MCGTech.Contracts.User;
 using MCGTech.Dal;
 using MCGTech.Dal.Models;
 
@@ -21,7 +22,10 @@ namespace MCGTech.Api.App_Start
             AutoMapper.Mapper.CreateMap<Blog, BlogDTO>();
             AutoMapper.Mapper.CreateMap<BlogPostDraft, BlogPostDraftDTO>()
                 .ForMember(dest => dest.User,
-               opts => opts.MapFrom(src => new UserProfile(_repo.FindUser(src.UserId)))); ;
+               opts => opts.MapFrom(src => new UserProfile(_repo.FindUser(src.UserId))));
+            AutoMapper.Mapper.CreateMap<CustomIdentityUser, UserModelDTO>()
+                .ForMember(dest => dest.UserName,
+                    opts => opts.MapFrom(src => src.Email));
         }
     }
 }

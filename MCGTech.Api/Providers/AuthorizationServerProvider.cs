@@ -1,17 +1,7 @@
 ﻿using MCGTech.Dal;
-using MCGTech.Dal.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Security.Claims;
-using System.Security.Principal;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace MCGTech.Api.Providers
 {
@@ -27,9 +17,9 @@ namespace MCGTech.Api.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (AuthRepository _repo = new AuthRepository())
+            using (var repo = new AuthRepository())
             {
-                CustomIdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                var user = await repo.FindUser(context.UserName, context.Password);
 
                 if (user == null)
                 {

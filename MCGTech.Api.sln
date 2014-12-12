@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCGTech.Api", "MCGTech.Api\MCGTech.Api.csproj", "{BA8DBE2D-762B-4E73-A366-8ACDF2EFE66B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCGTech.Dal", "MCGTech.Dal\MCGTech.Dal.csproj", "{2EF8A99B-E005-42C1-A77B-E9855F7D370E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCGTech.Contracts", "MCGTech.Contracts\MCGTech.Contracts.csproj", "{E6DAF262-509D-4840-AFDD-872DB6A046DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,10 @@ Global
 		{2EF8A99B-E005-42C1-A77B-E9855F7D370E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EF8A99B-E005-42C1-A77B-E9855F7D370E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EF8A99B-E005-42C1-A77B-E9855F7D370E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6DAF262-509D-4840-AFDD-872DB6A046DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6DAF262-509D-4840-AFDD-872DB6A046DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6DAF262-509D-4840-AFDD-872DB6A046DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6DAF262-509D-4840-AFDD-872DB6A046DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

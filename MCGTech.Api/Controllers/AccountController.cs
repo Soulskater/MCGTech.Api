@@ -1,12 +1,7 @@
 ﻿using MCGTech.Api.Models;
+using MCGTech.Contracts.User;
 using MCGTech.Dal;
-using MCGTech.Dal.Models;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -25,15 +20,17 @@ namespace MCGTech.Api.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(UserModel userModel)
+        public async Task<IHttpActionResult> Register(UserModelDTO userModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _repo.RegisterUser(userModel);
 
+            var user = AutoMapper.Mapper.Map<CustomIdentityUser>(userModel);
+
+            IdentityResult result = await _repo.RegisterUser(user, userModel.Password);
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)

@@ -1,4 +1,7 @@
-﻿using MCGTech.Api.Models;
+﻿using MCGTech.Api.Filters;
+using MCGTech.Api.Models;
+using MCGTech.Api.Providers;
+using MCGTech.Contracts.User;
 using MCGTech.Dal;
 using MCGTech.Dal.Models;
 using System;
@@ -22,7 +25,7 @@ namespace MCGTech.Api.Controllers
         [AllowAnonymous]
         public List<BlogDTO> Get()
         {
-            var context = new MCGTech.Dal.MCGTechContext();
+            var context = new MCGTechContext();
             var blogs = AutoMapper.Mapper.Map<List<BlogDTO>>(context.Blogs.ToList());
 
             blogs.Sort(delegate(BlogDTO x, BlogDTO y)
