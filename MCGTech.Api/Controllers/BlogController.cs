@@ -132,8 +132,11 @@ namespace MCGTech.Api.Controllers
             using (var context = new MCGTech.Dal.MCGTechContext())
             {
                 var blogPostDraft = context.BlogPostDrafts.FirstOrDefault(draft => draft.BlogPostDraftId == blogPostDraftId);
-                context.BlogPostDrafts.Remove(blogPostDraft);
-                context.SaveChanges();
+                if (blogPostDraft != null)
+                {
+                    context.BlogPostDrafts.Remove(blogPostDraft);
+                    context.SaveChanges();
+                }
             }
         }
 
