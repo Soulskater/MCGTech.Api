@@ -1,4 +1,6 @@
-﻿using MCGTech.Dal;
+﻿using System.Web.Http;
+using MCGTech.Contracts.User;
+using MCGTech.Dal;
 using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,9 +19,10 @@ namespace MCGTech.Api.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (var repo = new AuthRepository())
+            AppIdentityUser user;
+            using (var repo = new IdentityRepository())
             {
-                var user = await repo.FindUser(context.UserName, context.Password);
+                user = repo.FindUser(context.UserName, context.Password);
 
                 if (user == null)
                 {
@@ -31,7 +34,7 @@ namespace MCGTech.Api.Providers
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType, "sub", "");
             
-            identity.AddClaim(new Claim("sub", context.UserName));
+            identity.AddClaim(new Claim("sub", user.UserName));
             identity.AddClaim(new Claim("role", "user"));
             context.Validated(identity);
 

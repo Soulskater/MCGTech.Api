@@ -1,6 +1,6 @@
 ﻿namespace MCGTech.Contracts.User
 {
-    public interface ICustomIdentityUser
+    public interface IAppIdentityUser
     {
         string FirstName { get; set; }
         string LastName { get; set; }

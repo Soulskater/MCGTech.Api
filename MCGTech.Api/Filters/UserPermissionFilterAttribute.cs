@@ -36,13 +36,13 @@ namespace MCGTech.Api.Filters
             return continuation();
         }
 
-        private IPrincipal GetUserFromController(ApiController apiController)
+        private AppIdentityUser GetUserFromController(ApiController apiController)
         {
             var user = apiController.User;
             if (!user.Identity.IsAuthenticated)
                 throw new InvalidOperationException("The HttpContext.User is null");
-
-            return user;
+            var identityUser = new IdentityRepository().FindByUserName(user.Identity.Name);
+            return identityUser;
         }
 
         private static ApiController GetApiControllerFromActionContext(HttpActionContext actionContext)

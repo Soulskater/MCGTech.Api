@@ -2,9 +2,9 @@
 
 namespace MCGTech.Api.Models
 {
-    public class UserProfile : ICustomIdentityUser
+    public class UserProfile : IAppIdentityUser
     {
-        public UserProfile(ICustomIdentityUser baseUser)
+        public UserProfile(IAppIdentityUser baseUser)
         {
             FirstName = baseUser.FirstName;
             LastName = baseUser.LastName;

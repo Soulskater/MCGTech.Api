@@ -1,4 +1,5 @@
-﻿using MCGTech.Api.Models;
+﻿using MCGTech.Api.Extensions;
+using MCGTech.Api.Models;
 using MCGTech.Contracts.User;
 using MCGTech.Dal;
 using Microsoft.AspNet.Identity;
@@ -10,11 +11,11 @@ namespace MCGTech.Api.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        private AuthRepository _repo = null;
+        private IdentityRepository _repo = null;
 
         public AccountController()
         {
-            _repo = new AuthRepository();
+            _repo = new IdentityRepository();
         }
 
         // POST api/Account/Register
@@ -28,7 +29,7 @@ namespace MCGTech.Api.Controllers
             }
 
 
-            var user = AutoMapper.Mapper.Map<CustomIdentityUser>(userModel);
+            var user = AutoMapper.Mapper.Map<AppIdentityUser>(userModel);
 
             IdentityResult result = await _repo.RegisterUser(user, userModel.Password);
             IHttpActionResult errorResult = GetErrorResult(result);
@@ -45,7 +46,7 @@ namespace MCGTech.Api.Controllers
         [Route("user")]
         public async Task<IHttpActionResult> GetUserProfile()
         {
-            var user = _repo.FindUser(User.Identity.Name);
+            var user = _repo.FindByUserName(User.Identity.Name);
             if (user != null)
                 return Ok(new UserProfile(user));
             else

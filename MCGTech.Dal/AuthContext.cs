@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MCGTech.Dal
 {
-    public class AuthContext : IdentityDbContext<CustomIdentityUser>
+    public class AuthContext : IdentityDbContext<AppIdentityUser>
     {
         public AuthContext()
             : base("AuthContext")

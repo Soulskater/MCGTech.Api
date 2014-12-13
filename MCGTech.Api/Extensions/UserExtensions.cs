@@ -2,6 +2,7 @@
 using System.Security.Principal;
 using System.Web;
 using MCGTech.Contracts.User;
+using MCGTech.Dal;
 
 namespace MCGTech.Api.Extensions
 {
@@ -12,9 +13,12 @@ namespace MCGTech.Api.Extensions
             return user.IsInRole(String.Join(",", roles));
         }
 
-        public static bool IsInRole(this CustomIdentityUser user, params UserRoles[] roles)
+        public static bool IsInRole(this AppIdentityUser user, params UserRoles[] roles)
         {
-            return HttpContext.Current.User.IsInRole(String.Join(",", roles));
+            using (var roleRepo = new IdentityRoleRepository())
+            {
+                return roleRepo.IsInRole(user.Id, String.Join(",", roles));
+            }
         }
     }
 }

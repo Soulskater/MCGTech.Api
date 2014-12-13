@@ -15,11 +15,11 @@ namespace MCGTech.Api.Controllers
     [Authorize]
     public class BlogController : ApiController
     {
-        private AuthRepository _repo = null;
+        private readonly IdentityRepository _repo = null;
 
         public BlogController()
         {
-            _repo = new AuthRepository();
+            _repo = new IdentityRepository();
         }
 
         [AllowAnonymous]
@@ -39,7 +39,7 @@ namespace MCGTech.Api.Controllers
         [HttpPost]
         public void CreateComment([FromBody]BlogCommentDTO newComment)
         {
-            var user = _repo.FindUser(User.Identity.Name);
+            var user = _repo.FindByUserName(User.Identity.Name);
 
             using (var context = new MCGTech.Dal.MCGTechContext())
             {
@@ -62,9 +62,9 @@ namespace MCGTech.Api.Controllers
         [HttpPost]
         public void RateBlog(RatingDTO rate)
         {
-            var user = _repo.FindUser(User.Identity.Name);
+            var user = _repo.FindByUserName(User.Identity.Name);
 
-            using (var context = new MCGTech.Dal.MCGTechContext())
+            using (var context = new MCGTechContext())
             {
                 var blog = context.Blogs.FirstOrDefault(a => a.BlogId == rate.BlogId);
                 if (blog == null || blog.Ratings.Any(r => r.UserId == user.UserName))
@@ -82,6 +82,7 @@ namespace MCGTech.Api.Controllers
         }
 
         [Route("draft")]
+        [UserPermissionFilter(UserRoles.Owner)]
         public List<BlogPostDraftDTO> GetBlogPostDrafts()
         {
             var context = new MCGTech.Dal.MCGTechContext();
@@ -96,18 +97,21 @@ namespace MCGTech.Api.Controllers
 
         [Route("draft/save")]
         [HttpPost]
+        [UserPermissionFilter(UserRoles.Owner)]
         public BlogPostDraftDTO SaveBlogPostDraft([FromBody]BlogPostDraftDTO draft)
         {
-            var user = _repo.FindUser(User.Identity.Name);
+            var user = _repo.FindByUserName(User.Identity.Name);
 
             BlogPostDraft blogPostDraft;
 
-            using (var context = new MCGTech.Dal.MCGTechContext())
+            using (var context = new MCGTechContext())
             {
                 blogPostDraft = context.BlogPostDrafts.FirstOrDefault(a => a.BlogPostDraftId == draft.BlogPostDraftId);
                 if (blogPostDraft != null)
                 {
-                    blogPostDraft = AutoMapper.Mapper.Map<BlogPostDraft>(draft);
+                    blogPostDraft.Title = draft.Title;
+                    blogPostDraft.Content = draft.Content;
+                    blogPostDraft.LastSaved = DateTime.Now;
                 }
                 else
                 {
@@ -129,7 +133,7 @@ namespace MCGTech.Api.Controllers
         [HttpPost]
         public void DeleteBlogPostDraft([FromBody]int blogPostDraftId)
         {
-            using (var context = new MCGTech.Dal.MCGTechContext())
+            using (var context = new MCGTechContext())
             {
                 var blogPostDraft = context.BlogPostDrafts.FirstOrDefault(draft => draft.BlogPostDraftId == blogPostDraftId);
                 if (blogPostDraft != null)
@@ -144,9 +148,7 @@ namespace MCGTech.Api.Controllers
         [HttpPost]
         public void SaveBlogPost([FromBody]BlogPostDraftDTO draft)
         {
-            var user = _repo.FindUser(User.Identity.Name);
-
-            using (var context = new MCGTech.Dal.MCGTechContext())
+            using (var context = new MCGTechContext())
             {
                 context.Blogs.Add(new Blog()
                 {
