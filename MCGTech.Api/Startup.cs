@@ -26,7 +26,7 @@ namespace MCGTech.Api
 
         public void RegisterCors(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("www.mgprog.net", "*", "*");
+            var cors = new EnableCorsAttribute("mgprog.net,www.mgprog.net,http://mgprog.net", "*", "*");
             config.EnableCors(cors);
         }
 
