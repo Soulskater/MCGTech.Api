@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 [assembly: OwinStartup(typeof(MCGTech.Api.Startup))]
 namespace MCGTech.Api
@@ -18,8 +19,15 @@ namespace MCGTech.Api
             ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
+            RegisterCors(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
+        }
+
+        public void RegisterCors(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute("www.mgprog.net", "*", "*");
+            config.EnableCors(cors);
         }
 
         public void ConfigureOAuth(IAppBuilder app)
